@@ -41,7 +41,7 @@ extension Module {
 extension Routine {
     static let mock1 = Routine(
         name: "Upper Body Routine",
-        moduleIds: [Module.mock1.id, Module.mock2.id],
+        moduleId: [Module.mock1.id],
         restBetweenModules: 60,
         voiceEnabled: true,
         vibrationEnabled: true
@@ -49,7 +49,7 @@ extension Routine {
 
     static let mock2 = Routine(
         name: "Core Training",
-        moduleIds: [Module.mock3.id],
+        moduleId: [Module.mock2.id],
         restBetweenModules: 30,
         voiceEnabled: false,
         vibrationEnabled: true
@@ -57,7 +57,7 @@ extension Routine {
 
     static let mock3 = Routine(
         name: "Full Body Blast",
-        moduleIds: [Module.mock1.id, Module.mock2.id, Module.mock3.id],
+        moduleId: [Module.mock3.id],
         restBetweenModules: 90,
         voiceEnabled: true,
         vibrationEnabled: false

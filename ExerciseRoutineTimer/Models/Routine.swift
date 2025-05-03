@@ -11,19 +11,19 @@ import SwiftData
 class Routine {
     var id: UUID
     var name: String
-    var moduleIds: [UUID]
+    var moduleId: [UUID]
     var restBetweenModules: Int
     var voiceEnabled: Bool
     var vibrationEnabled: Bool
     var createdAt: Date
     var lastExecutedAt: Date?
 
-    init(id: UUID = UUID(), name: String, moduleIds: [UUID] = [],
+    init(id: UUID = UUID(), name: String, moduleId: [UUID] = [],
          restBetweenModules: Int = 0, voiceEnabled: Bool = false, vibrationEnabled: Bool = false,
          createdAt: Date = .now, lastExecutedAt: Date? = nil) {
         self.id = id
         self.name = name
-        self.moduleIds = moduleIds
+        self.moduleId = moduleId
         self.restBetweenModules = restBetweenModules
         self.voiceEnabled = voiceEnabled
         self.vibrationEnabled = vibrationEnabled
