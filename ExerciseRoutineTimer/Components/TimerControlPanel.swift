@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TimerControlPanel: View {
-    @ObservedObject var viewModel: WorkoutViewModel
+    @ObservedObject var viewModel: WorkoutViewModel    // VM
     var restBetweenModules: Int
     
     var progress: Double {
