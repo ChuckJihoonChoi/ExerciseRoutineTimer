@@ -1,6 +1,6 @@
 //
 //  TimerControlPanel.swift
-//  FlexPlanDraft
+//  ExerciseRoutineTimer
 //
 //  Created by JH's macbook on 5/2/25.
 //
@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TimerControlPanel: View {
-    @ObservedObject var viewModel: WorkoutViewModel    // VM
+    @ObservedObject var viewModel: WorkoutViewModel
     var restBetweenModules: Int
     
     var progress: Double {
