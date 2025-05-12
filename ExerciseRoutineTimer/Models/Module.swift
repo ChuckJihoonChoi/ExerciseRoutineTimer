@@ -1,8 +1,8 @@
 //
 //  Module.swift
-//  FlexPlanDraft
+//  FlexPlan
 //
-//  Created by JH's macbook on 5/2/25.
+//  Created by Nguyet Nga Nguyen on 5/2/25.
 //
 import Foundation
 import SwiftData
