@@ -14,7 +14,7 @@ struct ChartView: View {
     var body: some View {
         Chart {
             ForEach(Array(workouts.enumerated()), id: \.element.id) { index, history in
-                let sessionLabel = "Session \(index + 1)"
+                let sessionLabel = "\(index + 1)"
                 let duration = history.totalSeconds
 
                 BarMark(
