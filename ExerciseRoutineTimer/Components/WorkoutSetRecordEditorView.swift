@@ -8,7 +8,7 @@ import SwiftUI
 import SwiftData
 
 struct WorkoutSetRecordEditorView: View {
-    @Bindable var record: WorkoutSetRecord  // SwiftData 모델 바인딩
+    @Bindable var record: WorkoutSetRecord
     let editMode: Bool
 
     var body: some View {

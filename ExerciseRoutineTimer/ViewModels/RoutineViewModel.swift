@@ -1,6 +1,6 @@
 //
 //  RoutineViewModel.swift
-//  FlexPlan
+//  ExerciseRoutineTimer
 //
 //  Created by Nguyet Nga Nguyen on 5/2/25.
 //
@@ -8,11 +8,20 @@ import Foundation
 import SwiftData
 
 @Observable
-class RoutineViewModel {
+class RoutineViewModel: ObservableObject {
     var modelContext: ModelContext
 
     init(modelContext: ModelContext) {
         self.modelContext = modelContext
+    }
+    
+    func fetchAllRoutines() -> [Routine] {
+        do {
+            return try modelContext.fetch(FetchDescriptor<Routine>(sortBy: [SortDescriptor(\.createdAt)]))
+        } catch {
+            print("❌ Failed to fetch routines: \(error.localizedDescription)")
+            return []
+        }
     }
 
     func addRoutine(name: String) {
@@ -64,6 +73,11 @@ class RoutineViewModel {
 
         modelContext.insert(copiedRoutine)
     }
+    
+    func deleteRoutine(_ routine: Routine) {
+        modelContext.delete(routine)
+    }
+
 }
 
 

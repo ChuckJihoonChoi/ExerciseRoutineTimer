@@ -70,7 +70,6 @@ struct HistoryDetailView: View {
     }
 }
 
-
 //
 //#Preview {
 //    HistoryDetailView()
