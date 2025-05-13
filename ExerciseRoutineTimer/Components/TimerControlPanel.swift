@@ -4,7 +4,6 @@
 //
 //  Created by JH's macbook on 5/2/25.
 //
-
 import SwiftUI
 
 struct TimerControlPanel: View {
@@ -25,11 +24,11 @@ struct TimerControlPanel: View {
 
     var body: some View {
         ZStack {
-            // 배경 원
+            // Background Circle
             Circle()
                 .stroke(Color.gray.opacity(0.3), lineWidth: 20)
 
-            // 진행 원 (반시계 방향, 12시 시작)
+            // Process Circle (reverse to clock orientation, start from 12)
             Circle()
                 .trim(from: 0.0, to: progress)
                 .stroke(viewModel.isRestPhase ? Color.blue : Color.green,
@@ -37,7 +36,7 @@ struct TimerControlPanel: View {
                 .rotationEffect(.degrees(-90))
                 .animation(.easeInOut, value: progress)
 
-            // 텍스트: 남은 시간
+            // Remaining time
             VStack {
                 Text(viewModel.isRestPhase ? "Resting" : "Working")
                     .font(.headline)

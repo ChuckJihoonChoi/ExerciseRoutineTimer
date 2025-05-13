@@ -1,6 +1,6 @@
 //
 //  RoutineView.swift
-//  FlexPlan
+//  ExerciseRoutineTimer
 //
 //  Created by Nguyet Nga Nguyen on 5/2/25.
 //
@@ -14,14 +14,19 @@ struct RoutineView: View {
     @State private var showingAddAlert = false
     @State private var selectedRoutine: Routine? = nil
     @State private var isDetailActive: Bool = false
-
+    
+    @State private var routineViewModel: RoutineViewModel
+    init(modelContext: ModelContext) {
+        self._routineViewModel = State(wrappedValue: RoutineViewModel(modelContext: modelContext))
+    }
+    
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottomTrailing) {
                 List {
                     ForEach(routines.sorted(by: { $0.createdAt > $1.createdAt })) { routine in
                         NavigationLink {
-                            ModuleView(routine: routine) // ✅ 실제 디테일 뷰 연결
+                            ModuleView(routine: routine, modelContext: modelContext) // Actual Model View Connection
                         } label: {
                             RoutineItemView(routine: routine, source: .routineView)
                         }
@@ -61,35 +66,22 @@ struct RoutineView: View {
 
     // Fetch all routines from SwiftData
     private func fetchRoutines() {
-        do {
-            routines = try modelContext.fetch(FetchDescriptor<Routine>(sortBy: [SortDescriptor(\.createdAt)]))
-        } catch {
-            print("❌ Failed to fetch routines: \(error.localizedDescription)")
-        }
+        routines = routineViewModel.fetchAllRoutines()
     }
 
-    // Add a new routine and refresh the list
+    // Add a new routine using the ViewModel and refresh the list
     private func addRoutine() {
         guard !newRoutineName.isEmpty else { return }
-
-        let routine = Routine(
-            name: newRoutineName,
-            restBetweenModules: 60,
-            voiceEnabled: true,
-            vibrationEnabled: true,
-            createdAt: .now,
-            lastExecutedAt: nil
-        )
-        modelContext.insert(routine)
+        routineViewModel.addRoutine(name: newRoutineName)
         fetchRoutines()
         newRoutineName = ""
     }
 
-    // Delete selected routines and refresh
+    // Delete selected routines using the ViewModel and refresh
     private func deleteRoutine(at offsets: IndexSet) {
         for index in offsets {
             let routine = routines[index]
-            modelContext.delete(routine)
+            routineViewModel.deleteRoutine(routine)
         }
         fetchRoutines()
     }

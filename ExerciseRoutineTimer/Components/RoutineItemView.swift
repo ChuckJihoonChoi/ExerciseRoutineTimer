@@ -1,6 +1,6 @@
 //
 //  RoutineItemView.swift
-//  FlexPlan
+//  ExerciseRoutineTimer
 //
 //  Created by Nguyet Nga Nguyen on 5/2/25.
 //
@@ -19,12 +19,13 @@ struct RoutineItemView: View {
 
     @State private var showingRestAlert = false
     @State private var restTimeInput = ""
-
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 Text(routine.name)
-                    .font(StyleConstants.titleFont)
+                    .font(.title3)
+                    .fontWeight(Font.Weight.bold)
                 Spacer()
                 if let date = routine.lastExecutedAt {
                     Text(date, style: .date)
@@ -37,7 +38,7 @@ struct RoutineItemView: View {
                 Spacer()
 
                 // Rest time text (not tappable)
-                Text("Rest Time: \(routine.restBetweenModules) sec")
+                Text("Rest time: \((routine.restBetweenModules))")
                     .font(.caption)
                     .foregroundColor(.gray)
                     .padding(.trailing, 8)
@@ -68,10 +69,10 @@ struct RoutineItemView: View {
                 .toggleStyle(.button)
             }
         }
-        .padding(StyleConstants.cardPadding)
-        .background(StyleConstants.cardBackground)
-        .cornerRadius(StyleConstants.cardCornerRadius)
-        .shadow(color: StyleConstants.cardShadow, radius: StyleConstants.cardShadowRadius)
+        .padding(16)
+        .background(.gray.opacity(0.1))
+        .cornerRadius(12)
+        .shadow(color: .black.opacity(0.1), radius: 4)
         .alert("Edit Rest Time", isPresented: $showingRestAlert) {
             TextField("Seconds", text: $restTimeInput)
                 .keyboardType(.numberPad)
@@ -84,6 +85,12 @@ struct RoutineItemView: View {
         } message: {
             Text("Enter rest time between modules in seconds.")
         }
+    }
+    
+    private func formatSeconds(_ totalSeconds: Int) -> String {
+        let minutes = totalSeconds / 60
+        let seconds = totalSeconds % 60
+        return String(format: "%d:%02d", minutes, seconds)
     }
 }
 

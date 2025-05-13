@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  ExerciseRoutineTimer
 //
-//  Created by JH's macbook on 5/3/25.
+//  Created by JH's macbook on 5/2/25.
 //
 import SwiftUI
 import SwiftData
@@ -28,7 +28,6 @@ struct ContentView: View {
     }
 
 }
-
 
 //#Preview {
 //    ContentView()
